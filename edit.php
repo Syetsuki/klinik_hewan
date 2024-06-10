@@ -28,18 +28,9 @@ if (isset($_GET['id_perawatan'])) {
         $biaya = $_POST['biaya'];
 
         // Menjalankan prosedur untuk mengupdate data perawatan
-        $sql = "UPDATE Perawatan 
-                SET id_dokter = $id_dokter, 
-                    tanggal_perawatan = '$tanggal_perawatan', 
-                    diagnosa = '$diagnosa', 
-                    tindakan = '$tindakan', 
-                    id_obat = $id_obat, 
-                    biaya = $biaya 
-                WHERE id_perawatan = $id_perawatan";
-
+        $sql = "CALL edit_perawatan($id_perawatan, $id_dokter, '$tanggal_perawatan', '$diagnosa', '$tindakan', $id_obat, $biaya)";    
         if ($db->sqlquery($sql)) {
-            echo "Data perawatan berhasil diperbarui!";
-            header("Location: index.php");
+            header("Location: indexwjs.php");
             exit;
         } else {
             echo "Error: " . mysqli_error($db->getconnection());
@@ -57,43 +48,52 @@ if (isset($_GET['id_perawatan'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Data Perawatan</title>
+    <link rel="stylesheet" href="css/second.css">
 </head>
 <body>
-    <h1>Edit Data Perawatan</h1>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id_perawatan=' . $id_perawatan; ?>">
-        <label for="id_dokter">Dokter:</label><br>
-        <select id="id_dokter" name="id_dokter">
-            <?php
-            foreach ($result_dokter as $row) {
-                $selected = $row['id_dokter'] == $perawatan['id_dokter'] ? 'selected' : '';
-                echo "<option value='" . $row['id_dokter'] . "' $selected>" . $row['nama_dokter'] . "</option>";
-            }
-            ?>
-        </select><br>
-
-        <label for="tanggal_perawatan">Tanggal Perawatan:</label><br>
-        <input type="date" id="tanggal_perawatan" name="tanggal_perawatan" value="<?php echo $perawatan['tanggal_perawatan']; ?>"><br>
-
-        <label for="diagnosa">Diagnosa:</label><br>
-        <input type="text" id="diagnosa" name="diagnosa" value="<?php echo $perawatan['diagnosa']; ?>"><br>
-
-        <label for="tindakan">Tindakan:</label><br>
-        <input type="text" id="tindakan" name="tindakan" value="<?php echo $perawatan['tindakan']; ?>"><br>
-
-        <label for="id_obat">Obat:</label><br>
-        <select id="id_obat" name="id_obat">
-            <?php
-            foreach ($result_obat as $row) {
-                $selected = $row['id_obat'] == $perawatan['id_obat'] ? 'selected' : '';
-                echo "<option value='" . $row['id_obat'] . "' $selected>" . $row['nama_obat'] . "</option>";
-            }
-            ?>
-        </select><br>
-
-        <label for="biaya">Biaya:</label><br>
-        <input type="number" id="biaya" name="biaya" value="<?php echo $perawatan['biaya']; ?>"><br>
-
-        <input type="submit" value="Update">
-    </form>
+    <div class="wrapper">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id_perawatan=' . $id_perawatan; ?>">
+            <h1>Edit Data</h1><br>
+            <div class="jenisK">
+                <p>Dokter :</p>
+                <select id="id_dokter" name="id_dokter">
+                    <?php
+                    foreach ($result_dokter as $row) {
+                        $selected = $row['id_dokter'] == $perawatan['id_dokter'] ? 'selected' : '';
+                        echo "<option value='" . $row['id_dokter'] . "' $selected>" . $row['nama_dokter'] . "</option>";
+                    }
+                    ?>
+                </select>
+                <img src="assets/dropdown-arrow.png" class="dropdown-arrow">
+            </div>
+            <div class="input-box tanggal-lahir">
+                <p>Tanggal Perawatan :</p>
+                <input type="date" id="tanggal_perawatan" name="tanggal_perawatan" value="<?php echo $perawatan['tanggal_perawatan']; ?>">
+            </div>
+            <div class="input-box">
+                <input type="text" id="diagnosa" name="diagnosa" value="<?php echo $perawatan['diagnosa']; ?>" placeholder="Diagnosa">
+            </div>
+            <div class="input-box">
+                <input type="text" id="tindakan" name="tindakan" value="<?php echo $perawatan['tindakan']; ?>" placeholder="Tindakan">
+            </div>
+            <div class="jenisK">
+                <p>Obat :</p>
+                <select id="id_obat" name="id_obat">
+                    <?php
+                    foreach ($result_obat as $row) {
+                        $selected = $row['id_obat'] == $perawatan['id_obat'] ? 'selected' : '';
+                        echo "<option value='" . $row['id_obat'] . "' $selected>" . $row['nama_obat'] . "</option>";
+                    }
+                    ?>
+                </select>
+                <img src="assets/dropdown-arrow.png" class="dropdown-arrow">
+            </div>
+            <div class="input-box">
+                <input type="number" id="biaya" name="biaya" value="<?php echo $perawatan['biaya']; ?>" placeholder="Biaya">
+            </div>
+            
+            <button value="Submit" class="btnStyle">Update</button>
+        </form>
+    </div>
 </body>
 </html>

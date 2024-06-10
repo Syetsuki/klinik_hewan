@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="wrapper">
-        <h1>Pilih Pemilik</h1>
+        <h1>Pilih Pemilik</h1><br>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?action=<?php echo $action; ?>">
             <div class="jenisK">
                 <select id="id_pemilik" name="id_pemilik">

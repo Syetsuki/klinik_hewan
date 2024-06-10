@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="number" id="id_hewan" name="id_hewan" value="<?php echo $id_hewan; ?>" readonly>
             </div>
             <div class="jenisK">
-                <p>Dokter:</p>
+                <p>Dokter :</p>
                 <select id="id_dokter" name="id_dokter">
                     <?php
                     if ($result_dokter->num_rows > 0) {
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="../assets/dropdown-arrow.png" class="dropdown-arrow">
             </div>
             <div class="input-box tanggal-lahir">
-                <p>Tanggal Perawatan:</p>
+                <p>Tanggal Perawatan :</p>
                 <input type="date" id="tanggal_perawatan" name="tanggal_perawatan">
             </div>
             <div class="input-box">
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="tindakan" name="tindakan" placeholder="Tindakan">
             </div>
             <div class="jenisK">
-                <p>Obat:</p>
+                <p>Obat :</p>
                 <select id="id_obat" name="id_obat">
                     <?php
                     if ($result_obat->num_rows > 0) {
