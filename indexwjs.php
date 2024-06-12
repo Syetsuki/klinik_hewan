@@ -28,6 +28,7 @@ $result = $db->fetchdata($sql);
             <a href="create/selectPemilik.php?action=add_hewan"><button>Tambah Hewan</button></a>
              <!-- Tombol untuk pemilik dan hewan yang sudah terdaftar  -->
             <a href="create/selectHewan.php?action=add_perawatan"><button>Tambah Perawatan</button></a>
+            <a href="updatestokObat.php"><button>Stok Obat</button></a>
         </section>
         <section class="tableBody">
             <table class="content-table">

@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     // Menjalankan query delete
     if ($db->sqlquery($sql)) {
         echo "Data perawatan dengan ID $id_perawatan berhasil dihapus.";
-        header ("location: index.php");
+        header ("location: indexwjs.php");
     } else {
         echo "Gagal menghapus data perawatan.";
     }
