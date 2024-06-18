@@ -20,7 +20,6 @@ $result = $db->fetchdata($sql);
                     <img src="assets/Search.png">
                 </div>
         </section>
-        </section>
         <section class="btnStyle">
              <!-- Tombol untuk menambahkan data baru  -->
             <a href="create/createPemilik.php"><button>New Customer</button></a>
